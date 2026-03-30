@@ -42,4 +42,5 @@ def insererUtilisateur(email, nom, postnom):
     valeurs = (email_chiffre, nom_chiffre, postnom_chiffre)
     curseur.execute(requete, valeurs)
     connect().commit()
+    print("Utilisateur enregistre avec succès.")
 print(chiffrer_message("je vous salue"))
