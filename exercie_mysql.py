@@ -36,11 +36,15 @@ def insererUtilisateur(email, nom, postnom):
     email_chiffre = chiffrer_message(email)
     nom_chiffre = chiffrer_message(nom)
     postnom_chiffre = chiffrer_message(postnom)
-    
+    bd = connect()
+    curseur = bd.cursor()
     #insertion dans la base de donnees
-    requete = "INSERT INTO utilisateurs (email, nom, postnom) VALUES (%s, %s, %s)"
+    requete = "INSERT INTO utilisateur (email, nom, postnom) VALUES (%s, %s, %s)"
     valeurs = (email_chiffre, nom_chiffre, postnom_chiffre)
     curseur.execute(requete, valeurs)
-    connect().commit()
+    bd.commit()
+    curseur.close()
+    bd.close()
     print("Utilisateur enregistre avec succès.")
-print(chiffrer_message("je vous salue"))
+
+insererUtilisateur('volontemuhi@gmail.com','volonte','malisava')
