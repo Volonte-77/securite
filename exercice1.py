@@ -1,10 +1,11 @@
 from cryptography.fernet import Fernet
 
+
 message_clair = b"Bonjour, ceci est un message secret!"
 
 #generer une cle de chiffrement
 cle_de_chiffrement = Fernet.generate_key()
-
+print("la cle de chiffrement",cle_de_chiffrement)
 #charger l'algorithme de chiffrement 
 chiffrement=Fernet(cle_de_chiffrement)
 
