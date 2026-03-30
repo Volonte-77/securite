@@ -31,7 +31,7 @@ def chiffrer_message(message_clair):
     return message_chiffre
 
 #fonction pour inserer un utilisateur dans la base de donnees
-"""def insererUtilisateur(email, nom, postnom):
+def insererUtilisateur(email, nom, postnom):
     #chiffrement des informations sensibles
     email_chiffre = chiffrer_message(email)
     nom_chiffre = chiffrer_message(nom)
@@ -41,5 +41,5 @@ def chiffrer_message(message_clair):
     requete = "INSERT INTO utilisateurs (email, nom, postnom) VALUES (%s, %s, %s)"
     valeurs = (email_chiffre, nom_chiffre, postnom_chiffre)
     curseur.execute(requete, valeurs)
-    connect().commit()"""
+    connect().commit()
 print(chiffrer_message("je vous salue"))
