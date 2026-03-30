@@ -10,6 +10,10 @@ chiffrement=Fernet(cle_de_chiffrement)
 
 #chiffrement du message
 message_chiffre = chiffrement.encrypt(message_clair)
+#dechiffrement
+message_dechiffre = chiffrement.decrypt(message_chiffre)
 
 print("Message clair:", message_clair)
 print("Message chiffré:", message_chiffre)
+#apres dechiffrement, le message est lisible
+print("Message déchiffré:", message_dechiffre.decode())
