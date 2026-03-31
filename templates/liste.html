@@ -9,9 +9,10 @@
     <div class="mb-4 flex items-center justify-between">
         <form method="get" action="{{ url_for('liste_etudiants') }}" class="flex gap-2 items-center">
             <input type="text" name="q" value="{{ q or '' }}" placeholder="Rechercher (nom, postnom, email)" class="p-2 rounded-lg bg-[#081028] border border-orange-600/20 text-white" />
+            <input type="text" name="domain" value="{{ request.args.get('domain','') }}" placeholder="Filtrer par domaine email (ex: gmail.com)" class="p-2 rounded-lg bg-[#081028] border border-orange-600/20 text-white" />
             <button type="submit" class="btn-outline-orange px-3 py-2 rounded">Rechercher</button>
         </form>
-        <div class="text-sm text-muted">Résultats: {{ (etudiants|length) }} affichés</div>
+        <div class="text-sm text-muted">Résultats: {{ total }} trouvés</div>
     </div>
 
     {% if etudiants %}
@@ -32,9 +33,9 @@
                     <td class="px-4 py-3">{{ etudiant.email }}</td>
                     <td class="px-4 py-3">
                         <div class="flex gap-2">
-                            <a href="/modifier/{{ etudiant.id }}" class="btn-outline-orange px-3 py-1 rounded">Modifier</a>
-                            <form action="/supprimer/{{ etudiant.id }}" method="post" onsubmit="return confirm('Confirmer la suppression ?');">
-                                <button type="submit" class="px-3 py-1 rounded bg-red-600 text-white">Supprimer</button>
+                            <button type="button" data-id="{{ etudiant.id }}" class="edit-btn btn-outline-orange px-3 py-1 rounded">Modifier</button>
+                            <form action="/supprimer/{{ etudiant.id }}" method="post" class="inline-block">
+                                <button type="button" class="delete-btn px-3 py-1 rounded bg-red-600 text-white">Supprimer</button>
                             </form>
                         </div>
                     </td>
@@ -52,11 +53,11 @@
         <a href="/enregistrer" class="btn-orange px-5 py-2 rounded-lg"><i class="fas fa-user-plus"></i> Nouvel étudiant</a>
         <div class="flex items-center gap-2">
             {% if page > 1 %}
-                <a href="?q={{ q }}&page={{ page-1 }}" class="btn-outline-orange px-3 py-1 rounded">Précédent</a>
+                <a href="?q={{ q }}&domain={{ domain }}&page={{ page-1 }}" class="btn-outline-orange px-3 py-1 rounded">Précédent</a>
             {% endif %}
             <span class="text-sm text-muted">Page {{ page }} / {{ total_pages }}</span>
             {% if page < total_pages %}
-                <a href="?q={{ q }}&page={{ page+1 }}" class="btn-outline-orange px-3 py-1 rounded">Suivant</a>
+                <a href="?q={{ q }}&domain={{ domain }}&page={{ page+1 }}" class="btn-outline-orange px-3 py-1 rounded">Suivant</a>
             {% endif %}
         </div>
     </div>
