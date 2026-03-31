@@ -3,12 +3,43 @@
 {% block title %}Accueil - Gestion des étudiants{% endblock %}
 
 {% block content %}
-<div class="card rounded-lg border border-orange-200 p-6 shadow-md">
-    <h1 class="text-3xl font-bold text-orange-600 mb-4"><i class="fas fa-home"></i> Bienvenue</h1>
-    <p class="text-orange-700">Bienvenue dans l’application professionnelle de gestion des étudiants. Utilisez la navigation pour enregistrer un étudiant ou afficher la liste.</p>
-    <div class="mt-4 space-x-2">
-        <a href="/enregistrer" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"><i class="fas fa-user-plus"></i> Enregistrer un étudiant</a>
-        <a href="/liste" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"><i class="fas fa-list"></i> Voir la liste</a>
+<!-- HERO -->
+<section class="glass-card p-10 max-w-5xl mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold neon-title">Gestion des étudiants — Simple, sécurisée, centralisée</h1>
+    <p class="mt-4 text-lg text-muted">Enregistrez, suivez et gérez facilement les informations étudiants. Interface claire, accès rapide aux opérations courantes.</p>
+
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/enregistrer" class="btn-orange px-6 py-3 rounded-lg text-lg">Enregistrer un étudiant</a>
+        <a href="/liste" class="btn-outline-orange px-6 py-3 rounded-lg text-lg">Voir la liste</a>
     </div>
-</div>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 glass-card">
+            <div class="text-2xl text-orange-2 mb-3"><i class="fas fa-user-plus"></i></div>
+            <h3 class="font-semibold">Enregistrement rapide</h3>
+            <p class="mt-2 text-sm text-muted">Formulaire simple pour ajouter rapidement des étudiants avec les informations essentielles.</p>
+        </div>
+
+        <div class="p-6 glass-card">
+            <div class="text-2xl text-orange-2 mb-3"><i class="fas fa-list"></i></div>
+            <h3 class="font-semibold">Liste consolidée</h3>
+            <p class="mt-2 text-sm text-muted">Consultez, recherchez et parcourez la liste complète des étudiants en un seul endroit.</p>
+        </div>
+
+        <div class="p-6 glass-card">
+            <div class="text-2xl text-orange-2 mb-3"><i class="fas fa-lock"></i></div>
+            <h3 class="font-semibold">Sécurité & contrôle</h3>
+            <p class="mt-2 text-sm text-muted">Conçu pour protéger les données et faciliter les opérations administratives quotidiennes.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<section class="mt-12 max-w-4xl mx-auto text-center">
+    <p class="text-sm text-muted">Prêt à commencer ?</p>
+    <div class="mt-4">
+        <a href="/enregistrer" class="btn-orange px-5 py-3 rounded-lg">Commencer</a>
+    </div>
+</section>
+
 {% endblock %}
