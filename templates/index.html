@@ -1,18 +1,14 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GESTION DES ETUDIANTS</title>
-    <!--utilisation de tailwindcss et des icones en lignes -->
+{% extends 'base.html' %}
 
-</head>
-<body>
-   <header>
-    <h1>Mon Application</h1>
-    <ul>
-        <li>Enregistrement</li>
-        <li></li>
-    </ul>
-   </header>
-</body>
-</html>
+{% block title %}Accueil - Gestion des étudiants{% endblock %}
+
+{% block content %}
+<div class="card rounded-lg border border-orange-200 p-6 shadow-md">
+    <h1 class="text-3xl font-bold text-orange-600 mb-4"><i class="fas fa-home"></i> Bienvenue</h1>
+    <p class="text-orange-700">Bienvenue dans l’application professionnelle de gestion des étudiants. Utilisez la navigation pour enregistrer un étudiant ou afficher la liste.</p>
+    <div class="mt-4 space-x-2">
+        <a href="/enregistrer" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"><i class="fas fa-user-plus"></i> Enregistrer un étudiant</a>
+        <a href="/liste" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"><i class="fas fa-list"></i> Voir la liste</a>
+    </div>
+</div>
+{% endblock %}

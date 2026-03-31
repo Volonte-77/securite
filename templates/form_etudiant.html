@@ -1,15 +1,38 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enregisrement form</title>
-</head>
-<body>
-    <form action="">
-        <input type="text" name="nom" id="" placeholder="votre nom">
-        <input type="text" name="postnom" id="" placeholder="votre postnom">
-        <input type="email" name="" id=""placeholder="votre adresse mail">
-        <input type="button" value="ENREGISTRER">
+{% extends 'base.html' %}
+
+{% block title %}Enregistrer un étudiant{% endblock %}
+
+{% block content %}
+<div class="glass-card p-8 max-w-xl mx-auto">
+    <h1 class="neon-title text-3xl font-bold mb-6"><i class="fas fa-user-plus"></i> Formulaire futuriste</h1>
+    <p class="text-orange-200 mb-6">Entrez les informations de l'étudiant avec design moderne et validation</p>
+
+    <form action="/enregistrer" method="post" class="space-y-5">
+        <div>
+            <label class="block mb-2 text-orange-200 font-semibold">Nom</label>
+            <input type="text" name="nom" required placeholder="Ex: Kins" class="w-full p-3 rounded-lg border border-orange-500 bg-[#10223d] text-white focus:outline-none focus:ring-2 focus:ring-orange-400" />
+        </div>
+
+        <div>
+            <label class="block mb-2 text-orange-200 font-semibold">Postnom</label>
+            <input type="text" name="postnom" required placeholder="Ex: Mupamba" class="w-full p-3 rounded-lg border border-orange-500 bg-[#10223d] text-white focus:outline-none focus:ring-2 focus:ring-orange-400" />
+        </div>
+
+        <div>
+            <label class="block mb-2 text-orange-200 font-semibold">Email</label>
+            <input type="email" name="email" required placeholder="exemple@mail.com" class="w-full p-3 rounded-lg border border-orange-500 bg-[#10223d] text-white focus:outline-none focus:ring-2 focus:ring-orange-400" />
+        </div>
+
+        <div class="flex flex-wrap gap-3 items-center">
+            <button type="submit" class="btn-orange px-5 py-3 rounded-lg font-bold shadow-lg"><i class="fas fa-rocket mr-2"></i> Enregistrer</button>
+            <a href="/liste" class="btn-outline-orange px-4 py-2 rounded-lg">Voir la liste</a>
+        </div>
     </form>
-</body>
-</html>
+
+    {% if message %}
+    <div class="mt-6 p-4 rounded-lg border border-green-500 bg-green-900/30 text-green-200">
+        <i class="fas fa-check-circle"></i> {{ message }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

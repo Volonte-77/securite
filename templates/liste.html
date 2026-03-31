@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des étudiants{% endblock %}
+
+{% block content %}
+<div class="glass-card p-6 max-w-4xl mx-auto">
+    <h1 class="neon-title text-3xl font-bold mb-5"><i class="fas fa-list"></i> Étudiants enregistrés</h1>
+
+    {% if etudiants %}
+    <div class="overflow-x-auto rounded-lg border border-orange-500/30">
+        <table class="w-full text-sm text-left">
+            <thead class="bg-gradient-to-r from-orange-600 to-orange-400 text-white uppercase">
+                <tr>
+                    <th class="px-4 py-3">Nom</th>
+                    <th class="px-4 py-3">Postnom</th>
+                    <th class="px-4 py-3">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for etudiant in etudiants %}
+                <tr class="border-b border-white/10 hover:bg-orange-500/15">
+                    <td class="px-4 py-3">{{ etudiant.nom }}</td>
+                    <td class="px-4 py-3">{{ etudiant.postnom }}</td>
+                    <td class="px-4 py-3">{{ etudiant.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="p-4 rounded-lg bg-orange-900/20 border border-orange-500/30 text-orange-100">
+        <i class="fas fa-exclamation-circle"></i> Aucun étudiant pour le moment. Ajoutez-en un via le formulaire.
+    </div>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="/enregistrer" class="btn-orange px-5 py-2 rounded-lg"><i class="fas fa-user-plus"></i> Nouvel étudiant</a>
+    </div>
+</div>
+{% endblock %}
