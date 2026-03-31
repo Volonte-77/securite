@@ -6,6 +6,14 @@
 <div class="glass-card p-6 max-w-4xl mx-auto">
     <h1 class="neon-title text-3xl font-bold mb-5"><i class="fas fa-list"></i> Étudiants enregistrés</h1>
 
+    <div class="mb-4 flex items-center justify-between">
+        <form method="get" action="{{ url_for('liste_etudiants') }}" class="flex gap-2 items-center">
+            <input type="text" name="q" value="{{ q or '' }}" placeholder="Rechercher (nom, postnom, email)" class="p-2 rounded-lg bg-[#081028] border border-orange-600/20 text-white" />
+            <button type="submit" class="btn-outline-orange px-3 py-2 rounded">Rechercher</button>
+        </form>
+        <div class="text-sm text-muted">Résultats: {{ (etudiants|length) }} affichés</div>
+    </div>
+
     {% if etudiants %}
     <div class="overflow-x-auto rounded-lg border border-orange-500/30">
         <table class="w-full text-sm text-left">
@@ -22,6 +30,14 @@
                     <td class="px-4 py-3">{{ etudiant.nom }}</td>
                     <td class="px-4 py-3">{{ etudiant.postnom }}</td>
                     <td class="px-4 py-3">{{ etudiant.email }}</td>
+                    <td class="px-4 py-3">
+                        <div class="flex gap-2">
+                            <a href="/modifier/{{ etudiant.id }}" class="btn-outline-orange px-3 py-1 rounded">Modifier</a>
+                            <form action="/supprimer/{{ etudiant.id }}" method="post" onsubmit="return confirm('Confirmer la suppression ?');">
+                                <button type="submit" class="px-3 py-1 rounded bg-red-600 text-white">Supprimer</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -32,9 +48,17 @@
         <i class="fas fa-exclamation-circle"></i> Aucun étudiant pour le moment. Ajoutez-en un via le formulaire.
     </div>
     {% endif %}
-
-    <div class="mt-4">
+    <div class="mt-4 flex items-center justify-between">
         <a href="/enregistrer" class="btn-orange px-5 py-2 rounded-lg"><i class="fas fa-user-plus"></i> Nouvel étudiant</a>
+        <div class="flex items-center gap-2">
+            {% if page > 1 %}
+                <a href="?q={{ q }}&page={{ page-1 }}" class="btn-outline-orange px-3 py-1 rounded">Précédent</a>
+            {% endif %}
+            <span class="text-sm text-muted">Page {{ page }} / {{ total_pages }}</span>
+            {% if page < total_pages %}
+                <a href="?q={{ q }}&page={{ page+1 }}" class="btn-outline-orange px-3 py-1 rounded">Suivant</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -33,7 +33,7 @@ def chiffrer_message(message_clair):
 #fonction pour inserer un utilisateur dans la base de donnees
 def insererUtilisateur(email, nom, postnom):
     #chiffrement des informations sensibles
-    email_chiffre = chiffrer_message(email)
+    email_chiffre = email
     nom_chiffre = chiffrer_message(nom)
     postnom_chiffre = chiffrer_message(postnom)
     bd = connect()
@@ -47,4 +47,27 @@ def insererUtilisateur(email, nom, postnom):
     bd.close()
     print("Utilisateur enregistre avec succès.")
 
-insererUtilisateur('volontemuhi@gmail.com','volonte','malisava')
+
+def supprimerUtilisateur(user_id):
+    bd = connect()
+    curseur = bd.cursor()
+    requete = "DELETE FROM utilisateur WHERE id = %s"
+    curseur.execute(requete, (user_id,))
+    bd.commit()
+    curseur.close()
+    bd.close()
+
+
+def modifierUtilisateur(user_id, email, nom, postnom):
+    # chiffrer les champs sensibles
+    nom_chiffre = chiffrer_message(nom)
+    postnom_chiffre = chiffrer_message(postnom)
+    bd = connect()
+    curseur = bd.cursor()
+    requete = "UPDATE utilisateur SET email = %s, nom = %s, postnom = %s WHERE id = %s"
+    curseur.execute(requete, (email, nom_chiffre, postnom_chiffre, user_id))
+    bd.commit()
+    curseur.close()
+    bd.close()
+
+# insererUtilisateur('volontemuhi@gmail.com','volonte','malisava')
