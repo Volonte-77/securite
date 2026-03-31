@@ -33,7 +33,7 @@
                     <td class="px-4 py-3">{{ etudiant.email }}</td>
                     <td class="px-4 py-3">
                         <div class="flex gap-2">
-                            <button type="button" data-id="{{ etudiant.id }}" class="edit-btn btn-outline-orange px-3 py-1 rounded">Modifier</button>
+                            <a href="/modifier/{{ etudiant.id }}" class="btn-outline-orange px-3 py-1 rounded">Modifier</a>
                             <form action="/supprimer/{{ etudiant.id }}" method="post" class="inline-block">
                                 <button type="button" class="delete-btn px-3 py-1 rounded bg-red-600 text-white">Supprimer</button>
                             </form>

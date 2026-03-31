@@ -1,4 +1,4 @@
-from flask import Flask, render_template as template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template as template, request, redirect, url_for, flash
 import os
 from exercie_mysql import insererUtilisateur, supprimerUtilisateur, modifierUtilisateur
 from dechiffrement import get_utilisateurs, get_utilisateur_by_id
@@ -63,12 +63,7 @@ def supprimer(user_id):
     return redirect(url_for('liste_etudiants'))
 
 
-@application.route('/api/utilisateur/<int:user_id>')
-def api_utilisateur(user_id):
-    user = get_utilisateur_by_id(user_id)
-    if not user:
-        return jsonify({'error': 'Not found'}), 404
-    return jsonify(user)
+
 
 @application.route('/liste')
 def liste_etudiants():
